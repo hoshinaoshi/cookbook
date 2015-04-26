@@ -1,0 +1,10 @@
+DEPENDENCIES
+  ruby-env
+    path: site-cookbooks/ruby-env
+  yum-epel
+
+GRAPH
+  ruby-env (0.1.0)
+  yum (3.6.0)
+  yum-epel (0.6.0)
+    yum (~> 3.0)
