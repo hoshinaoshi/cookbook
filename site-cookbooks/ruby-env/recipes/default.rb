@@ -28,6 +28,13 @@ template '.bash_profile' do
   not_if 'group rbenv ~/.bash_profile', environment: { :'HOME' => "/home/#{node['ruby-env']['user']}" }
 end
 
+execute "update .bash_profile" do
+  command "source ~/.bash_profile"
+  user node['ruby-env']['user']
+  group node['ruby-env']['group']
+  environment 'HOME' => "/home/#{node['ruby-env']['user']}"
+end
+
 directory "/home/#{node['ruby-env']['user']}/.rbenv/plugins" do
   owner node['ruby-env']['user']
   group node['ruby-env']['group']
@@ -50,7 +57,7 @@ execute "rbenv install #{node['ruby-env']['version']}" do
   not_if { File.exists?("/home/#{node['ruby-env']['user']}/.rbenv/versions/#{node['ruby-env']['version']}") }
 end
 
-execute "rbenv install #{node['ruby-env']['version']}" do
+execute "rbenv global #{node['ruby-env']['version']}" do
   command "/home/#{node['ruby-env']['user']}/.rbenv/bin/rbenv global #{node['ruby-env']['version']}"
   user node['ruby-env']['user']
   group node['ruby-env']['group']
