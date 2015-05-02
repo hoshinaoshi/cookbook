@@ -8,16 +8,10 @@
     "recipe[dstat]",
     "recipe[mysql]",
     "recipe[ruby-env]",
-    "recipe[apache]",
-    "recipe[rails]"
+    "recipe[rails]",
+    "recipe[passenger_apache2]"
   ],
   "automatic": {
-    "ipaddress": "52.68.147.221"
-  },
-  "mysql":{
-    "version":"5.6",
-    "port":"3306",
-    "server_root_password":"vagrant",
-    "remove_anonymous_users":true
+    "ipaddress": "52.68.54.132"
   }
 }

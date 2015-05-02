@@ -1,9 +1,23 @@
 DEPENDENCIES
+  passenger_apache2
   ruby-env
     path: site-cookbooks/ruby-env
   yum-epel
 
 GRAPH
+  apache2 (1.11.0)
+    freebsd (>= 0.0.0)
+    iptables (>= 0.0.0)
+    logrotate (>= 0.0.0)
+    pacman (>= 0.0.0)
+  build-essential (2.2.3)
+  freebsd (0.3.0)
+  iptables (1.0.0)
+  logrotate (1.9.1)
+  pacman (1.1.1)
+  passenger_apache2 (2.2.3)
+    apache2 (~> 1.0)
+    build-essential (>= 0.0.0)
   ruby-env (0.1.0)
   yum (3.6.0)
   yum-epel (0.6.0)

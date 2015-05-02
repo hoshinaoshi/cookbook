@@ -6,7 +6,7 @@
 #
 # All rights reserved - Do Not Redistribute
 #
-%w{git openssl-devel sqlite-devel make gcc zlib-devel openssl-devel readline-devel ncurses-devel gdbm-devel db4-devel libffi-devel libyaml-devel}.each do |pkg|
+%w{git openssl-devel sqlite-devel make gcc zlib-devel openssl-devel readline-devel ncurses-devel gdbm-devel db4-devel libffi-devel libyaml-devel ruby-devel}.each do |pkg|
   package pkg do
     action :install
   end
@@ -63,5 +63,12 @@ execute "rbenv global #{node['ruby-env']['version']}" do
   group node['ruby-env']['group']
   environment 'HOME' => "/home/#{node['ruby-env']['user']}"
   not_if "rbenv versions | grep #{node['ruby-env']['version']} | grep global"
+end
+
+execute "force gem path" do
+  command "sudo ln -sf /home/#{node['ruby-env']['user']}/.rbenv/versions/2.2.2/bin/gem /usr/bin/gem"
+  user 'root'
+  group 'root'
+  environment 'HOME' => "/home/#{node['ruby-env']['user']}"
 end
 
